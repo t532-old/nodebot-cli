@@ -1,0 +1,9 @@
+/*
+TODO:
+基本逻辑：
+接收参数gitURL
+clone到${path}/src/modules
+检测index.js导出以及helper/aliases是否存在
+并依据此编辑exports.yml
+最后提示用户重启bot
+*/
