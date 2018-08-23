@@ -1,0 +1,38 @@
+{
+  "name": "nodebot-cli",
+  "version": "0.1.0",
+  "description": "cli for nodebot",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm link && nodebot",
+    "test": "npm run build && node bin/nodebot.js",
+    "build": "babel src -d dist -s"
+  },
+  "bin": {
+    "nodebot": "bin/nodebot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/trustgit/nodebot-cli.git"
+  },
+  "author": "trustgit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/trustgit/nodebot-cli/issues"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "@babel/runtime": "^7.0.0-beta.51"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.0.0-beta.51",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "source-map-support": "^0.5.6"
+  }
+}
