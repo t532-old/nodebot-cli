@@ -16,14 +16,12 @@ async function installModule(cli, config, name) {
     }
     if (!succeed) {
         cli.write(chalk.red(`Error occured when installing package ${fullName} after 3 retries. `))
-        process.chdir(prevDir)
         throw new Error('Failed downloading')
     }
     let exportChecker
     try { exportChecker = require(`${config.path}/node_modules/${fullName}`) }
     catch (err) {
         cli.write(chalk.red('Dependency problem occured. Try re-installing dependencies using command `install`.'))
-        process.chdir(prevDir)
         throw err
     }
     cli.write(chalk.blue(`Writing configuration... `))
@@ -39,7 +37,6 @@ async function installModule(cli, config, name) {
     try { writeFileSync(`config/exports.yml`, safeDump(exportList)) }
     catch (err) {
         cli.write(chalk.red(`Error occured when writing export config. check permission in ${config.path}. `))
-        process.chdir(prevDir)
         throw err
     }
     cli.write(chalk.green(`Successfully installed module ${shortName}. `))
@@ -67,7 +64,11 @@ export default {
         try {
             if (name) await installModule(cli, config, name) 
             else await installDependencies(cli, config)
-        } catch { cli.write(chalk.bgRed.white(`Error occured. Exiting command \`install\`. `)) }
+        } catch {
+            cli.write(chalk.bgRed.white(`Error occured. Exiting command \`install\`. `))
+            process.chdir(prevDir)
+            return
+        }
         cli.write(chalk.bgBlue.white(`Restart nodebot to apply these changes. `))
         cli.write(chalk.bgGreen.black(`Success. Exiting command \`install\`. `))
         process.chdir(prevDir)
