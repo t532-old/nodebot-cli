@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm link && nodebot",
-    "test": "npm run build && node bin/nodebot.js",
+    "test": "npm run build && node -r source-map-support/register bin/nodebot.js",
     "build": "babel src -d dist -s"
   },
   "bin": {
@@ -21,8 +21,9 @@
     "url": "https://gitlab.com/trustgit/nodebot-cli/issues"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.51",
     "chalk": "^2.4.1",
-    "@babel/runtime": "^7.0.0-beta.51"
+    "js-yaml": "^3.12.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
