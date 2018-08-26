@@ -1,12 +1,3 @@
-/*
-TODO:
-基本逻辑：
-接收参数gitURL
-clone到${path}/src/modules
-检测index.js导出以及helper/aliases是否存在
-并依据此编辑exports.yml
-最后提示用户重启bot
-*/
 import chalk from 'chalk'
 import { safeLoad, safeDump } from 'js-yaml'
 import { existsSync, readFileSync, writeFileSync} from 'fs'
@@ -60,7 +51,6 @@ async function installDependencies(cli, config) {
         cli.write(chalk.red(`Error occured when installing nodebot's dependencies. Try deleting everything in ${config.path} and retry. `))
         throw err
     }
-    cli.write(chalk.blue(`Successfully downloaded and updated all dependencies.`))
 }
 export default {
     args: '[name]',
@@ -78,6 +68,7 @@ export default {
             if (name) await installModule(cli, config, name) 
             else await installDependencies(cli, config)
         } catch { cli.write(chalk.bgRed.white(`Error occured. Exiting command \`install\`. `)) }
+        cli.write(chalk.bgBlue.white(`Restart nodebot to apply these changes. `))
         cli.write(chalk.bgGreen.black(`Success. Exiting command \`install\`. `))
         process.chdir(prevDir)
     }
