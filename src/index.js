@@ -48,6 +48,7 @@ async function download() {
 async function listen() {
     const command = await cli.question(chalk.gray('nodebot > '))
     await interpreter.do(command, cli, config)
+    cli.write('')
 }
 async function initialize() {
     let installed = true
