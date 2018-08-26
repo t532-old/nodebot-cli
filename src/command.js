@@ -35,8 +35,8 @@ export default class Command {
      * @param {{{ command?: string, options: string }, { default: function, invalid: function, success?: function }}} params prefixes and handlers
      */
     constructor({prefixes, handlers}) { 
-        this.#optionsPrefix = new RegExp('^' + prefixes.options)
-        if (prefixes.command) this.#commandPrefix = new RegExp('^' + prefixes.command)
+        this.#optionsPrefix = new RegExp(`^${prefixes.options}`)
+        if (prefixes.command) this.#commandPrefix = new RegExp(`^${prefixes.command}`)
         if (handlers.default) this.defaultHandler = handlers.default
         if (handlers.invalid) this.invalidHandler = handlers.invalid
         if (handlers.success) this.successHandler = handlers.success
@@ -65,7 +65,8 @@ export default class Command {
      * @returns {Command}
      */
     on(name, {args, options, action}) {
-        const str = this.#commandPrefix.toString().slice(2, -1) + name + ' ' + args
+        let str = name + ' ' + args
+        if (this.#commandPrefix) str = this.#commandPrefix.toString().slice(2, -1) + str
         args = args.split(' ')
         args = {
             required: args.filter(i => i.match(/^<.+>$/))
@@ -95,7 +96,7 @@ export default class Command {
      * @param {any} extraArgs
      */
     do(command, ...extraArgs) {
-        if (this.commandPrefix) {
+        if (this.#commandPrefix) {
             if (!this.#commandPrefix.test(command)) return
             command = command.split(this.#commandPrefix)[1]
         }
@@ -150,8 +151,8 @@ export default class Command {
         for (let i of this.#list[name].args.optional)
             args[i] = raw.optional.shift()
         if (this.#list[name].args.group) args[this.#list[name].args.group] = raw.group
-        this.#list[name].action(...extraArgs, args, options)
         this.successHandler(...extraArgs, [name, [args, options]])
+        return this.#list[name].action(...extraArgs, args, options)
     }
     /**
      * Get a command's usage
