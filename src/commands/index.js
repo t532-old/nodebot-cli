@@ -1,4 +1,5 @@
 export uninstall from './uninstall'
+export announce from './announce'
 export install from './install'
 export config from './config'
 export exit from './exit'
