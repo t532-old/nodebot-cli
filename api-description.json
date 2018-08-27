@@ -1,0 +1,76 @@
+{
+    "private": {
+        "description": "Send private message to a specific user.",
+        "params": ["user_id", "message"]
+    },
+    "group": {
+        "description": "Send group message to a specific group.",
+        "params": ["group_id", "message"]
+    },
+    "discuss": {
+        "description": "Send discuss message to a specific discussion.",
+        "params": ["discuss_id", "message"]
+    },
+    "groupList": {
+        "description": "Get a list of your joined groups.",
+        "params": []
+    },
+    "memberList": {
+        "description": "Get a list of the members of a specific group.",
+        "params": ["group_id"]
+    },
+    "strangerInfo": {
+        "sendAs": "userInfo",
+        "description": "Get a stranger's info.",
+        "params": ["user_id"]
+    },
+    "memberInfo": {
+        "sendAs": "userInfo",
+        "description": "Get a member's info in a specific group.",
+        "params": ["user_id", "group_id"]
+    },
+    "selfInfo": {
+        "description": "Get your account's info.",
+        "params": []
+    },
+    "kick": {
+        "description": "Kick a group member.",
+        "params": ["group_id", "user_id", "reject_add_request"]
+    },
+    "ban": {
+        "description": "Ban a group member.",
+        "params": ["group_id", "user_id", "duration"]
+    },
+    "unban": {
+        "description": "Unban a group member.",
+        "params": ["group_id", "user_id"]
+    },
+    "wholeBan": {
+        "description": "Ban a whole group.",
+        "params": ["group_id"]
+    },
+    "wholeUnban": {
+        "description": "Unban a whole group.",
+        "params": ["group_id"]
+    },
+    "leave": {
+        "description": "Leave a group.",
+        "params": ["group_id"]
+    },
+    "leaveDiscuss": {
+        "description": "Leave a discussion.",
+        "params": ["discuss_id"]
+    },
+    "rename": {
+        "description": "Rename a user's group card.",
+        "params": ["group"]
+    },
+    "admin": {
+        "description": "Set a user's admin permission in a specific group.",
+        "params": ["group_id", "user_id"]
+    },
+    "unadmin": {
+        "description": "Unset a user's admin permission in a specific group.",
+        "params": ["group_id", "user_id"]
+    }
+}

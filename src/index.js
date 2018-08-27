@@ -59,10 +59,17 @@ async function initialize() {
         installed = (await cli.question(`Have you already installed nodebot on your computer? [${chalk.green('Y')}/${chalk.red('(N)')}] > `)).toLowerCase() === 'y' ? true : false
         config.path = await cli.question(`Specify a path for nodebot > `)
         if (!path.isAbsolute(config.path)) config.path = path.join(process.cwd(), config.path)
+        cli.write('')
     }
     if (!config.pm) {
         cli.write(`You haven't specified your package manager. `)
         config.pm = await cli.question(`Enter your package manager command (npm) > `)
+        cli.write('')
+    }
+    if (!config.apiPort) {
+        cli.write(`You haven't specified your nodebot's API port. `)
+        config.apiPort = parseInt(await cli.question(`Enter nodebot's API port in config.yml (empty for none) > `)) || undefined
+        cli.write('')
     }
     writeFileSync(`${__dirname}/../config.json`, JSON.stringify(config))
     if (!existsSync(`${config.path}/package.json`)) {
