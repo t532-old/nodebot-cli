@@ -22,10 +22,9 @@ export default {
     args: '',
     options: [],
     /**
-     * downloads a module for nodebot
+     * lists the version info of nodebot
      * @param {{write: function, question: function, exec: function}} cli 
      * @param {any} config
-     * @param {{name: string}} args
      */
     async action(cli, config) {
         const prevDir = process.cwd()

@@ -4,10 +4,10 @@ export default {
     args: '[name] [value]',
     options: [],
     /**
-     * downloads a module for nodebot
+     * query or modify nodebot-cli's configuration
      * @param {{write: function, question: function, exec: function}} cli 
      * @param {any} config
-     * @param {{name: string}} args
+     * @param {{name?: string, value?: string}} args
      */
     async action(cli, config, { name, value }) {
         const prevDir = process.cwd()

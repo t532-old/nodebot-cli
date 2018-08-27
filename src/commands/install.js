@@ -56,7 +56,7 @@ export default {
      * downloads a module for nodebot
      * @param {{write: function, question: function, exec: function}} cli 
      * @param {any} config
-     * @param {{name: string}} args
+     * @param {{name?: string}} args
      */
     async action(cli, config, { name }) {
         const prevDir = process.cwd()

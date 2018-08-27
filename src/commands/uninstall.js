@@ -27,7 +27,7 @@ export default {
     args: '<name>',
     options: [],
     /**
-     * downloads a module for nodebot
+     * uninstalls a module for nodebot
      * @param {{write: function, question: function, exec: function}} cli 
      * @param {any} config
      * @param {{name: string}} args
