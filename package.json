@@ -9,6 +9,7 @@
     "build": "babel src -d dist -s",
     "prepare": "npm run build"
   },
+  "files": ["*", "dist/"],
   "bin": {
     "nodebot": "bin/nodebot.js"
   },
