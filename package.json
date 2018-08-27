@@ -9,7 +9,7 @@
     "build": "babel src -d dist -s",
     "prepare": "npm run build"
   },
-  "files": ["*", "dist/"],
+  "files": ["*.json", ".babelrc", ".gitignore", ".npmrc", "*.md", "dist/", "src/", "bin/", "assets/", "config/"],
   "bin": {
     "nodebot": "bin/nodebot.js"
   },
