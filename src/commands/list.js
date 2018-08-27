@@ -36,11 +36,9 @@ export default {
             cli.write(modules.versionList)
             cli.write(modules.exportList)
         } catch {
-            cli.write(chalk.bgRed.white(`Error occured. Exiting command \`list\`. `))
             process.chdir(prevDir)
             return
         }
-        cli.write(chalk.bgGreen.black(` Success. Exiting command \`list\`. `))
         process.chdir(prevDir)
     }
 }

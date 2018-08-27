@@ -65,12 +65,10 @@ export default {
             if (name) await installModule(cli, config, name) 
             else await installDependencies(cli, config)
         } catch {
-            cli.write(chalk.bgRed.white(` Error occured. Exiting command \`install\`. `))
             process.chdir(prevDir)
             return
         }
         cli.write(chalk.blue(`Restart nodebot to apply these changes. `))
-        cli.write(chalk.bgGreen.black(` Success. Exiting command \`install\`. `))
         process.chdir(prevDir)
     }
 }

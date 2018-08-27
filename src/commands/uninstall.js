@@ -37,12 +37,10 @@ export default {
         process.chdir(config.path)
         try { await uninstallModule(cli, config, name) } 
         catch {
-            cli.write(chalk.bgRed.white(`Error occured. Exiting command \`uninstall\`. `))
             process.chdir(prevDir)
             return
         }
         cli.write(chalk.blue(`Restart nodebot to apply these changes. `))
-        cli.write(chalk.bgGreen.black(` Success. Exiting command \`uninstall\`. `))
         process.chdir(prevDir)
     }
 }

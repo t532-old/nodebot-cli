@@ -47,7 +47,8 @@ async function download() {
 }
 async function listen() {
     const command = await cli.question(chalk.gray('nodebot > '))
-    await interpreter.do(command, cli, config)
+    try { await interpreter.do(command, cli, config) }
+    catch { cli.write(chalk.bgRed.white(` Error occured. Exiting command. `)) }
     cli.write('')
 }
 async function initialize() {
