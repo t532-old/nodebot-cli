@@ -64,11 +64,8 @@ export default {
         try {
             if (name) await installModule(cli, config, name) 
             else await installDependencies(cli, config)
-        } catch {
-            process.chdir(prevDir)
-            return
-        }
+        } catch (err) { throw err }
+          finally { process.chdir(prevDir) }
         cli.write(chalk.blue(`Restart nodebot to apply these changes. `))
-        process.chdir(prevDir)
     }
 }

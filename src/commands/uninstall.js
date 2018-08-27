@@ -36,11 +36,8 @@ export default {
         const prevDir = process.cwd()
         process.chdir(config.path)
         try { await uninstallModule(cli, config, name) } 
-        catch {
-            process.chdir(prevDir)
-            return
-        }
+        catch (err) { throw err }
+        finally { process.chdir(prevDir) }
         cli.write(chalk.blue(`Restart nodebot to apply these changes. `))
-        process.chdir(prevDir)
     }
 }

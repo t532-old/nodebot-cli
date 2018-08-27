@@ -35,10 +35,7 @@ export default {
             const modules = await getModuleList(config)
             cli.write(modules.versionList)
             cli.write(modules.exportList)
-        } catch {
-            process.chdir(prevDir)
-            return
-        }
-        process.chdir(prevDir)
+        } catch (err) { throw err }
+          finally { process.chdir(prevDir) }
     }
 }
