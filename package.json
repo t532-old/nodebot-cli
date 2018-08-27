@@ -1,6 +1,6 @@
 {
   "name": "nodebot-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "cli for nodebot",
   "main": "src/index.js",
   "scripts": {
@@ -9,7 +9,18 @@
     "build": "babel src -d dist -s",
     "prepare": "npm run build"
   },
-  "files": ["*.json", ".babelrc", ".gitignore", ".npmrc", "*.md", "dist/", "src/", "bin/", "assets/", "config/"],
+  "files": [
+    "*.json",
+    ".babelrc",
+    ".gitignore",
+    ".npmrc",
+    "*.md",
+    "dist/",
+    "src/",
+    "bin/",
+    "assets/",
+    "config/"
+  ],
   "bin": {
     "nodebot": "bin/nodebot.js"
   },
