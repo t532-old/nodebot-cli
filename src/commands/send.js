@@ -16,8 +16,19 @@ export default {
                 if (name in API_DESCRIPTION) {
                     const request = { name, params: [] }
                     cli.write(`${chalk.gray(`${name} ::`)} ${API_DESCRIPTION[name].description}`)
-                    for (let i of API_DESCRIPTION[name].params)
-                        request.params.push(await cli.question(chalk.gray(`${i} >>> `)))
+                    for (let i of API_DESCRIPTION[name].params) {
+                        if (i === 'message') {
+                            cli.write('Start entering message. 2 adjacent \\n means the end of the message.')
+                            let message = ''
+                            while (1) {
+                                const line = await cli.question(chalk.gray('>>> '))
+                                if (line) message += (line + '\n')
+                                else break
+                            }
+                            if (message.endsWith('\n')) message = message.slice(0, message.length - 1)
+                            request.params.push(message)
+                        } else request.params.push(await cli.question(chalk.gray(`${i} >>> `)))
+                    }
                     cli.write(chalk.blue(`Request sent >>> `))
                     const result = (await post(`http://localhost:${config.apiPort}`, request)).data
                     cli.write(result)
