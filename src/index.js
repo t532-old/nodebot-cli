@@ -51,7 +51,7 @@ async function listen() {
     const command = await cli.question(chalk.gray('nodebot > '))
     try { await interpreter.do(command, cli, config) }
     catch (err) {
-        if (process.argv[1] == '--debug') cli.write(err)
+        cli.write(err)
         cli.write(chalk.bgRed.white(` Error occured. Exiting command. `))
     }
     cli.write('')
@@ -71,7 +71,6 @@ async function initialize() {
         config.pm = await cli.question(`Enter your package manager command (npm) > `)
         cli.write('')
     }
-    writeFileSync(`${__dirname}/../config.json`, JSON.stringify(config))
     if (!existsSync(`${config.path}/package.json`)) {
         if (installed) cli.write(chalk.red(`nodebot isn't found in ${config.path}. `))
         await download()
@@ -81,6 +80,7 @@ async function initialize() {
         config.apiPort = parseInt(await cli.question(`Enter nodebot's API port in config.yml (empty for none) > `)) || undefined
         cli.write('')
     }
+    writeFileSync(`${__dirname}/../config.json`, JSON.stringify(config))
 }
 export async function main() { 
     await initialize()
