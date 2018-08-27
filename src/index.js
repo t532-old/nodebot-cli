@@ -42,6 +42,8 @@ async function download() {
     cli.write(chalk.blue(`Downloading finished. To start using nodebot, open another shell and type:
 
     $ cd ${config.path}
+    $ cp config/config.template.yml config/config.yml
+    ... Edit config/config.yml ...
     $ npm start
     `))
 }
@@ -66,15 +68,15 @@ async function initialize() {
         config.pm = await cli.question(`Enter your package manager command (npm) > `)
         cli.write('')
     }
-    if (!config.apiPort) {
-        cli.write(`You haven't specified your nodebot's API port. `)
-        config.apiPort = parseInt(await cli.question(`Enter nodebot's API port in config.yml (empty for none) > `)) || undefined
-        cli.write('')
-    }
     writeFileSync(`${__dirname}/../config.json`, JSON.stringify(config))
     if (!existsSync(`${config.path}/package.json`)) {
         if (installed) cli.write(chalk.red(`nodebot isn't found in ${config.path}. `))
         await download()
+    }
+    if (!config.apiPort) {
+        cli.write(`You haven't specified your nodebot's API port. `)
+        config.apiPort = parseInt(await cli.question(`Enter nodebot's API port in config.yml (empty for none) > `)) || undefined
+        cli.write('')
     }
 }
 export async function main() { 
