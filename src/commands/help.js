@@ -1,7 +1,18 @@
-/*
-TODO:
-基本逻辑：
-接收可选参数command
-若有command，则显示command的帮助
-否则显示command列表及简述
-*/
+import HELP_DOC from '../../help.json'
+export default {
+    args: '',
+    options: [],
+    /**
+     * exit the process
+     * @param {any} cli
+     */
+    async action(cli) {
+        cli.write(HELP_DOC.about)
+        cli.write('')
+        for (let i of HELP_DOC.commands) {
+            cli.write(i.name)
+            i.description.split('\n').map(i => `    ${i}`).forEach(cli.write)
+            cli.write('')
+        }
+    }
+}

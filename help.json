@@ -1,0 +1,33 @@
+{
+    "about": "Nodebot CLI Help \nBy trustgit, https://gitlab.com/trustgit/nodebot-cli",
+    "commands": [
+        {
+            "name": "announce -include/-except [groups...]",
+            "description": "Announce a message to all your groups (including/except those in list [groups...])"
+        },
+        {
+            "name": "config [name] [value]",
+            "description": "Get configuration of cli (if [value] isn't specified); \nSet configuration of cli (if [value] is specified)."
+        },
+        {
+            "name": "exit",
+            "description": "See you next time!"
+        },
+        {
+            "name": "install [name]",
+            "description": "Install a nodebot module (if specified [name]); \nInstall nodebot's dependencies (if not specified [name])"
+        },
+        {
+            "name": "list",
+            "description": "List nodebot & module's version info."
+        },
+        {
+            "name": "send [action]",
+            "description": "Do/Check standard cqhttp actions."
+        },
+        {
+            "name": "uninstall <name>",
+            "description": "Uninstall a nodebot module."
+        }
+    ]
+}
