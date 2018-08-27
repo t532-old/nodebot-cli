@@ -7,7 +7,7 @@
     "start": "npm link && nodebot",
     "test": "npm run build && node -r source-map-support/register bin/nodebot.js",
     "build": "babel src -d dist -s",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "bin": {
     "nodebot": "bin/nodebot.js"
