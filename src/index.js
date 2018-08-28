@@ -1,4 +1,4 @@
-import config from '../config.json'
+import { homedir } from 'os'
 import Command from './command'
 import chalk from 'chalk'
 import path from 'path'
@@ -7,6 +7,8 @@ import { writeFileSync, existsSync, mkdirSync } from 'fs'
 import { createInterface } from 'readline'
 import { version } from '../package.json'
 import { spawn } from 'child_process'
+const configPath = `${homedir()}/.nodebot.json`
+let config
 const interpreter = new Command({
     prefixes: { options: '-' },
     handlers: {
@@ -57,6 +59,8 @@ async function listen() {
     cli.write('')
 }
 async function initialize() {
+    if (!existsSync(configPath)) writeFileSync(configPath, JSON.stringify({ coreRepo: 'https://gitlab.com/trustgit/nodebot.git' }))
+    config = require(configPath)
     let installed = true
     cli.write(welcome)
     if (!config.path) {
@@ -80,7 +84,7 @@ async function initialize() {
         config.apiPort = parseInt(await cli.question(`Enter nodebot's API port in config.yml (empty for none) > `)) || undefined
         cli.write('')
     }
-    writeFileSync(`${__dirname}/../config.json`, JSON.stringify(config))
+    writeFileSync(configPath, JSON.stringify(config))
 }
 export async function main() { 
     await initialize()

@@ -1,5 +1,7 @@
 import chalk from 'chalk'
+import { homedir } from 'os'
 import { writeFileSync } from 'fs'
+const configPath = `${homedir()}/.nodebot.json`
 export default {
     args: '[name] [value]',
     options: [],
@@ -16,7 +18,7 @@ export default {
             cli.write(chalk.blue(`Writing value... `))
             config[name] = value
             try {
-                writeFileSync('../../config.json', JSON.stringify(config))
+                writeFileSync(configPath, JSON.stringify(config))
                 cli.write(chalk.green(`Succesfully wrote config. `))
             } catch (err) {
                 cli.write(chalk.red(`Don\'t have permission when operating in ${config.path}. `))
