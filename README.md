@@ -47,4 +47,4 @@ uninstall <name>
 ```
 
 ## 演示
-![nodebot usage](https://gitlab.com/trustgit/nodebot-cli/blob/master/doc/static/usage.gif)
+![nodebot usage](https://gitlab.com/trustgit/nodebot-cli/raw/master/doc/static/usage.gif)
